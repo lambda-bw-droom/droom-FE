@@ -18,6 +18,7 @@ const SignupContainer = props => {
 		lastName: '',
 		email: '',
 		password: '',
+		userType: '',
 		errors: {}
 	});
 

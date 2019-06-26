@@ -56,7 +56,6 @@ export const Login = props => {
 									value={form.password}
 									labelText="Password"
 								/>
-
 								<Button buttonText="login" onClick={handleSubmit} type="button" />
 							</form>
 						</FormContainer>

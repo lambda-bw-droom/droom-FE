@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Header, Footer, Button, Input } from '../~common';
-import { ContainerStyled, borderRadius, medium_space } from '../~styles/reuseables';
+import { ContainerStyled, borderRadius, medium_space, InputGroupStyled, LabelStyled } from '../~styles/reuseables';
 /**
  * This is a dumb component with no logic
  *
@@ -74,6 +74,39 @@ export const Signup = props => {
 									value={form.password}
 									labelText="Password"
 								/>
+
+								<InputGroupStyled style={{ display: 'flex' }}>
+									<LabelStyled>
+										Job seeker{' '}
+										<input
+											type="radio"
+											name="userType"
+											value="jobSeeker"
+											style={{ marginRight: '20px' }}
+											checked={form.userType === 'jobSeeker'}
+											onChange={evt => {
+												const field = evt.target.name;
+												const value = evt.target.value;
+												inputChange(field, value);
+											}}
+										/>
+									</LabelStyled>
+
+									<LabelStyled>
+										Employer{' '}
+										<input
+											type="radio"
+											name="userType"
+											value="employer"
+											checked={form.userType === 'employer'}
+											onChange={evt => {
+												const field = evt.target.name;
+												const value = evt.target.value;
+												inputChange(field, value);
+											}}
+										/>
+									</LabelStyled>
+								</InputGroupStyled>
 
 								<Button buttonText="Create Account" onClick={handleSubmit} type="button" />
 							</form>
