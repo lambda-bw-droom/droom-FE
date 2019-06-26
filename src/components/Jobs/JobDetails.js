@@ -24,7 +24,7 @@ export const JobDetails = props => {
 
 	return (
 		<JobDetailsStyled>
-			<h3>Job details</h3>
+			<h4>Job details</h4>
 			<CompanyDetailsWrapper>
 				<div>
 					<img src={imgSrc} alt={companyName} />
@@ -70,7 +70,7 @@ const JobDetailsStyled = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	background: ${white};
-	min-height: 600px;
+	min-height: 550px;
 	width: 350px;
 	box-shadow: ${boxShadow};
 	padding-top: ${medium_space};
@@ -83,6 +83,10 @@ const JobDetailsStyled = styled.div`
 		&:hover {
 			color: ${primary_color};
 		}
+	}
+
+	h4 {
+		margin: ${small_space} 0;
 	}
 `;
 
