@@ -1,5 +1,14 @@
 import styled from 'styled-components';
-import { normal_space, white, primary_color, secondary_color, borderRadius, boxShadow } from '../index';
+import {
+	normal_space,
+	white,
+	primary_color,
+	secondary_color,
+	borderRadius,
+	boxShadow,
+	dark,
+	small_space
+} from '../index';
 
 export const ButtonStyled = styled.button`
 	height: 48px;
@@ -35,8 +44,10 @@ export const ButtonPrimaryStyled = styled(ButtonStyled)`
 export const ButtonSecondaryStyled = styled(ButtonStyled)`
 	background-color: unset;
 	border: 1px solid ${primary_color};
-	box-shadow: unset;
-	padding: ${normal_space};
+	box-shadow: none;
+	font-weight: 400;
+	margin-top: ${small_space};
+	color: ${dark};
 
 	&:active {
 		opacity: 0.8;
