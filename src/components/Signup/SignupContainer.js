@@ -14,20 +14,21 @@ import { Signup } from './Signup';
  */
 const SignupContainer = props => {
 	const [form, setValue] = useState({
-		firstName: '',
-		lastName: '',
+		first_name: '',
+		last_name: '',
 		email: '',
 		password: '',
-		userType: '',
+		is_employer: '',
 		errors: {}
 	});
 
 	const handleSubmit = () => {
 		const newUser = {
-			firstName: form.firstName,
-			lastName: form.lastName,
+			first_name: form.first_name,
+			last_name: form.last_name,
 			email: form.email,
-			password: form.password
+			password: form.password,
+			is_employer: form.is_employer
 		};
 		createAccount(newUser);
 	};

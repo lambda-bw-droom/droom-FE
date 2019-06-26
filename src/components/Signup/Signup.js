@@ -2,7 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Header, Footer, Button, Input } from '../~common';
-import { ContainerStyled, borderRadius, medium_space, InputGroupStyled, LabelStyled } from '../~styles/reuseables';
+import {
+	ContainerStyled,
+	borderRadius,
+	medium_space,
+	InputGroupStyled,
+	LabelStyled,
+	white,
+	boxShadow
+} from '../~styles/reuseables';
 /**
  * This is a dumb component with no logic
  *
@@ -41,19 +49,19 @@ export const Signup = props => {
 							<form>
 								<Input
 									type="text"
-									name="firstName"
+									name="first_name"
 									inputChange={inputChange}
-									error={form.errors.firstName}
-									value={form.firstName}
+									error={form.errors.first_name}
+									value={form.first_name}
 									labelText="First name"
 								/>
 
 								<Input
 									type="text"
-									name="lastName"
+									name="last_name"
 									inputChange={inputChange}
-									error={form.errors.LastName}
-									value={form.LastName}
+									error={form.errors.last_name}
+									value={form.last_name}
 									labelText="Last name"
 								/>
 
@@ -80,10 +88,10 @@ export const Signup = props => {
 										Job seeker{' '}
 										<input
 											type="radio"
-											name="userType"
-											value="jobSeeker"
+											name="is_employer"
+											value={false}
 											style={{ marginRight: '20px' }}
-											checked={form.userType === 'jobSeeker'}
+											checked={`${form.is_employer}` === `${false}`}
 											onChange={evt => {
 												const field = evt.target.name;
 												const value = evt.target.value;
@@ -96,9 +104,9 @@ export const Signup = props => {
 										Employer{' '}
 										<input
 											type="radio"
-											name="userType"
-											value="employer"
-											checked={form.userType === 'employer'}
+											name="is_employer"
+											value={true}
+											checked={`${form.is_employer}` === `${true}`}
 											onChange={evt => {
 												const field = evt.target.name;
 												const value = evt.target.value;
@@ -133,9 +141,10 @@ const MainWrapper = styled.section`
 
 const FormContainer = styled.div`
 	width: 400px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: ${boxShadow};
 	border-radius: ${borderRadius};
 	padding: 4rem;
+	background: ${white};
 
 	h3 {
 		margin-bottom: ${medium_space};

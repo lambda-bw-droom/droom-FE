@@ -7,7 +7,8 @@ import {
 	h4_font_size,
 	small_space,
 	white,
-	secondary_color
+	secondary_color,
+	lightGrey
 } from '../index';
 import { dark } from '../variables/colors';
 
@@ -63,6 +64,7 @@ body {
   font-family: 'Roboto', 'Roboto Slab', serif;
   line-height: 1.2;
   color: ${dark};
+  background: ${lightGrey};
 }
 
 h1 {

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { Header, Footer, Button, Input } from '../~common';
-import { ContainerStyled, borderRadius, medium_space } from '../~styles/reuseables';
+import { ContainerStyled, borderRadius, medium_space, white, boxShadow } from '../~styles/reuseables';
 /**
  * This is a dumb component with no logic
  *
@@ -81,9 +81,10 @@ const MainWrapper = styled.section`
 
 const FormContainer = styled.div`
 	width: 400px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: ${boxShadow};
 	border-radius: ${borderRadius};
 	padding: 4rem;
+	background: ${white};
 
 	h3 {
 		margin-bottom: ${medium_space};
