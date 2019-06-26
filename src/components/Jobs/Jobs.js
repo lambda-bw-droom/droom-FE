@@ -10,9 +10,54 @@ import {
 	medium_space,
 	borderRadius,
 	primary_color,
-	ContainerStyled,
-	small_font_size
+	ContainerStyled
 } from '../~styles/reuseables';
+import { Job } from './Job';
+
+const jobs = [
+	{
+		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
+		role: 'Executive Assistant to CEO',
+		companyName: 'Lambda',
+		location: 'Dubai, United Arab Emirates',
+		postedDate: '1 day ago'
+	},
+	{
+		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
+		role: 'Executive Assistant to CEO',
+		companyName: 'Lambda',
+		location: 'Dubai, United Arab Emirates',
+		postedDate: '1 day ago'
+	},
+	{
+		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
+		role: 'Executive Assistant to CEO',
+		companyName: 'Lambda',
+		location: 'Dubai, United Arab Emirates',
+		postedDate: '1 day ago'
+	},
+	{
+		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
+		role: 'Executive Assistant to CEO',
+		companyName: 'Lambda',
+		location: 'Dubai, United Arab Emirates',
+		postedDate: '1 day ago'
+	},
+	{
+		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
+		role: 'Executive Assistant to CEO',
+		companyName: 'Lambda',
+		location: 'Dubai, United Arab Emirates',
+		postedDate: '1 day ago'
+	},
+	{
+		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
+		role: 'Executive Assistant to CEO',
+		companyName: 'Lambda',
+		location: 'Dubai, United Arab Emirates',
+		postedDate: '1 day ago'
+	}
+];
 
 /**
  * This is a dumb component with no logic
@@ -43,69 +88,7 @@ export const Jobs = () => {
 				<ContainerStyled>
 					<h3>Explore Jobs</h3>
 					<MainWrapper>
-						<MainSection>
-							<JobListContainer>
-								<JobCard to="/jobs">
-									<div>
-										<img src="https://img.icons8.com/color/48/000000/user-male-circle.png" alt="company logo" />
-									</div>
-									<JobRoleStyled>Executive Assistant to CEO</JobRoleStyled>
-									<CompanyNameStyled>Lambda</CompanyNameStyled>
-									<CompanyLocationStyled>Dubai, United Arab Emirates</CompanyLocationStyled>
-									<PostedDateStyled>1 day ago</PostedDateStyled>
-								</JobCard>
-
-								<JobCard to="/jobs">
-									<div>
-										<img src="https://img.icons8.com/color/48/000000/user-male-circle.png" alt="company logo" />
-									</div>
-									<JobRoleStyled>Executive Assistant to CEO</JobRoleStyled>
-									<CompanyNameStyled>Lambda</CompanyNameStyled>
-									<CompanyLocationStyled>Dubai, United Arab Emirates</CompanyLocationStyled>
-									<PostedDateStyled>1 day ago</PostedDateStyled>
-								</JobCard>
-
-								<JobCard to="/jobs">
-									<div>
-										<img src="https://img.icons8.com/color/48/000000/user-male-circle.png" alt="company logo" />
-									</div>
-									<JobRoleStyled>Executive Assistant to CEO</JobRoleStyled>
-									<CompanyNameStyled>Lambda</CompanyNameStyled>
-									<CompanyLocationStyled>Dubai, United Arab Emirates</CompanyLocationStyled>
-									<PostedDateStyled>1 day ago</PostedDateStyled>
-								</JobCard>
-
-								<JobCard to="/jobs">
-									<div>
-										<img src="https://img.icons8.com/color/48/000000/user-male-circle.png" alt="company logo" />
-									</div>
-									<JobRoleStyled>Executive Assistant to CEO</JobRoleStyled>
-									<CompanyNameStyled>Lambda</CompanyNameStyled>
-									<CompanyLocationStyled>Dubai, United Arab Emirates</CompanyLocationStyled>
-									<PostedDateStyled>1 day ago</PostedDateStyled>
-								</JobCard>
-
-								<JobCard to="/jobs">
-									<div>
-										<img src="https://img.icons8.com/color/48/000000/user-male-circle.png" alt="company logo" />
-									</div>
-									<JobRoleStyled>Executive Assistant to CEO</JobRoleStyled>
-									<CompanyNameStyled>Lambda</CompanyNameStyled>
-									<CompanyLocationStyled>Dubai, United Arab Emirates</CompanyLocationStyled>
-									<PostedDateStyled>1 day ago</PostedDateStyled>
-								</JobCard>
-
-								<JobCard to="/jobs">
-									<div>
-										<img src="https://img.icons8.com/color/48/000000/user-male-circle.png" alt="company logo" />
-									</div>
-									<JobRoleStyled>Executive Assistant to CEO</JobRoleStyled>
-									<CompanyNameStyled>Lambda</CompanyNameStyled>
-									<CompanyLocationStyled>Dubai, United Arab Emirates</CompanyLocationStyled>
-									<PostedDateStyled>1 day ago</PostedDateStyled>
-								</JobCard>
-							</JobListContainer>
-						</MainSection>
+						<JobListContainer>{jobs.map(job => <Job {...job} />)}</JobListContainer>
 
 						<RightAside>
 							<h3>Job details</h3>
@@ -172,7 +155,6 @@ const RightAside = styled.aside`
 	box-shadow: ${boxShadow};
 	padding-top: ${medium_space};
 	border-radius: ${borderRadius};
-	margin-top: 20px;
 	padding: ${small_space};
 
 	a {
@@ -184,51 +166,10 @@ const RightAside = styled.aside`
 	}
 `;
 
-const MainSection = styled.section`width: 900px;`;
-
-const JobListContainer = styled.div`
+const JobListContainer = styled.section`
+	width: 900px;
 	display: flex;
 	flex-wrap: wrap;
-`;
-
-const JobCard = styled(Link)`
-	width: 260px;
-	height: 190px;
-	box-shadow: ${boxShadow};
-	padding: ${small_space} ${medium_space};
-	margin: 20px;
-	background: ${white};
-	border-radius: ${borderRadius};
-	color: ${dark};
-
-	&:hover {
-		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.2);
-		transition: box-shadow 83ms;
-	}
-`;
-
-const CompanyNameStyled = styled.p`
-	font-size: ${small_font_size};
-	margin-bottom: 0.5rem;
-`;
-
-const CompanyLocationStyled = styled.h5`
-	color: rgba(0, 0, 0, 0.6);
-	font-size: ${small_font_size};
-	margin-bottom: 0.5rem;
-`;
-
-const JobRoleStyled = styled.p`
-	font-size: 1.5rem;
-	margin: 0;
-	text-align: left;
-	margin-bottom: 0.5rem;
-`;
-
-const PostedDateStyled = styled.p`
-	color: rgba(0, 0, 0, 0.6);
-	font-size: ${small_font_size};
-	margin-bottom: 0.5rem;
 `;
 
 const CompanyDetailsWrapper = styled.div`

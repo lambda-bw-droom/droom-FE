@@ -20,18 +20,17 @@ import {
  */
 export const Job = props => {
 	const { imgSrc, role, companyName, location, postedDate } = props;
+
 	return (
-		<JobListContainer>
-			<JobCard to="/jobs">
-				<div>
-					<img src={imgSrc} alt={companyName} />
-				</div>
-				<JobRoleStyled>{role}</JobRoleStyled>
-				<CompanyNameStyled>{companyName}</CompanyNameStyled>
-				<CompanyLocationStyled>{location}</CompanyLocationStyled>
-				<PostedDateStyled>{postedDate}</PostedDateStyled>
-			</JobCard>
-		</JobListContainer>
+		<JobCard to="/jobs">
+			<div>
+				<img src={imgSrc} alt={companyName} />
+			</div>
+			<JobRoleStyled>{role}</JobRoleStyled>
+			<CompanyNameStyled>{companyName}</CompanyNameStyled>
+			<CompanyLocationStyled>{location}</CompanyLocationStyled>
+			<PostedDateStyled>{postedDate}</PostedDateStyled>
+		</JobCard>
 	);
 };
 
@@ -43,17 +42,11 @@ Job.propTypes = {
 	postedDate: PropTypes.any
 };
 
-const JobListContainer = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-`;
-
 const JobCard = styled(Link)`
-	width: 260px;
-	height: 190px;
+	width: 250px;
+	height: 250px;
 	box-shadow: ${boxShadow};
 	padding: ${small_space} ${medium_space};
-	margin: 20px;
 	background: ${white};
 	border-radius: ${borderRadius};
 	color: ${dark};
