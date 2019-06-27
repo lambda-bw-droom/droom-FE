@@ -67,5 +67,25 @@ export const login = credentials => dispatch => {
 };
 
 export const createProfile = profile => dispatch => {
-	console.log('profile');
+	dispatch({ type: CREATING_PROFILE });
+
+	const profileUrl = profile.is_employer ? `${BASE_URL}/profile/employers` : `${BASE_URL}/profile/seeker`;
+
+	return axiosWithHeader()
+		.put(profileUrl, profile)
+		.then(res => {
+			dispatch({
+				type: CREATE_PROFILE_SUCCESS,
+				payload: {
+					user: res.data.saved[0],
+					token: res.data.token
+				}
+			});
+
+			return res;
+		})
+		.catch(err => {
+			dispatch({ type: CREATE_PROFILE_FAILURE });
+			return err;
+		});
 };

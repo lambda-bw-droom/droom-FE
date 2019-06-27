@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createProfile } from '../../../redux/action';
 import { Seeker } from './Seeker';
@@ -13,11 +14,11 @@ import { Seeker } from './Seeker';
  * @returns {Object}
  */
 const SeekerContainer = props => {
-	const { createProfile } = props;
+	const { createProfile, creatingProfile } = props;
 
 	const [form, setValue] = useState({
-		firstName: '',
-		lastName: '',
+		first_name: '',
+		last_name: '',
 		email: '',
 		location: '',
 		phone: '',
@@ -34,17 +35,32 @@ const SeekerContainer = props => {
 
 	const handleSubmit = () => {
 		const profile = {
-			firstName: '',
-			lastName: '',
-			email: '',
-			location: '',
-			phone: '',
-			linkedIn: ''
+			first_name: form.first_name,
+			last_name: form.last_name,
+			email: form.email,
+			location: form.location,
+			phone: form.phone,
+			linkedIn: form.linkedIn,
+			is_employer: false
 		};
-		createProfile(profile);
+		console.log(profile);
+
+		createProfile(profile).then(res => {
+			if (res.data !== undefined && res.status === 200) {
+				return <Redirect to="/dashboard" />;
+			}
+
+			return <Redirect to="/dashboard" />;
+		});
 	};
 
-	return <Seeker form={form} inputChange={inputChange} handleSubmit={handleSubmit} />;
+	return <Seeker form={form} inputChange={inputChange} handleSubmit={handleSubmit} creatingProfile={creatingProfile} />;
 };
 
-export default connect(null, { createProfile })(SeekerContainer);
+const mapStateToProps = state => {
+	return {
+		creatingProfile: state.userReducer.creatingProfile
+	};
+};
+
+export default connect(mapStateToProps, { createProfile })(SeekerContainer);

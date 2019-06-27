@@ -4,13 +4,17 @@ import {
 	CREATE_ACCOUNT_FAILURE,
 	LOGIN_IN,
 	LOG_IN_SUCCESS,
-	LOG_IN_FAILURE
+	LOG_IN_FAILURE,
+	CREATING_PROFILE,
+	CREATE_PROFILE_SUCCESS,
+	CREATE_PROFILE_FAILURE
 } from '../action';
 
 const initialState = {
 	user: null,
 	creating: false,
 	signing_in: false,
+	creatingProfile: false,
 	error: null
 };
 
@@ -52,6 +56,23 @@ export const userReducer = (state = initialState, action) => {
 				...state,
 				signing_in: false,
 				error: action.payload
+			};
+		case CREATING_PROFILE:
+			return {
+				...state,
+				creatingProfile: true
+			};
+		case CREATE_PROFILE_SUCCESS:
+			return {
+				...state,
+				creatingProfile: false,
+				user: action.payload.user
+			};
+		case CREATE_PROFILE_FAILURE:
+			return {
+				...state,
+				error: action.payload,
+				creatingProfile: false
 			};
 		default:
 			return state;

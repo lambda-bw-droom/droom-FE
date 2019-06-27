@@ -1,4 +1,5 @@
 import React from 'react';
+import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 import { Button, Input } from '../../~common';
 import { borderRadius, medium_space, h4_font_size } from '../../~styles/reuseables';
@@ -9,7 +10,7 @@ import { borderRadius, medium_space, h4_font_size } from '../../~styles/reuseabl
  * @returns {object}
  */
 export const Employer = props => {
-	const { handleSubmit, inputChange, form } = props;
+	const { handleSubmit, inputChange, form, creatingProfile } = props;
 
 	return (
 		<MainWrapper>
@@ -81,7 +82,13 @@ export const Employer = props => {
 					/>
 
 					<ActionWrapper>
-						<Button buttonText="Create" onClick={handleSubmit} type="button" />
+						<Button
+							buttonText={
+								(creatingProfile && <Loader type="ThreeDots" color="#f4f4f4" height={50} width={50} />) || 'Create'
+							}
+							onClick={handleSubmit}
+							type="button"
+						/>
 						<Button buttonText="Cancel" onClick={handleSubmit} type="button" />
 					</ActionWrapper>
 				</form>

@@ -35,7 +35,6 @@ const LoginContainer = props => {
 		};
 
 		login(newUser).then(res => {
-			console.log(res);
 			if (res.data !== undefined && res.status === 200) {
 				return props.history.push('/dashboard');
 			}

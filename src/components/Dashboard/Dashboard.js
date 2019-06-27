@@ -1,8 +1,7 @@
 import React from 'react';
-import { Animated } from 'react-animated-css';
 import styled from 'styled-components';
-import { NavLink, Link } from 'react-router-dom';
-import { Header } from '../~common';
+import { NavLink } from 'react-router-dom';
+import { Header, Button } from '../~common';
 import {
 	small_space,
 	dark,
@@ -15,6 +14,7 @@ import {
 } from '../~styles/reuseables';
 
 import { JobDetails } from '../Jobs/JobDetails';
+import { SeekerContainer, EmployerContainer } from '../Profile';
 
 /**
  * This is a dumb component with no logic
@@ -57,17 +57,17 @@ export const Dashboard = () => {
 
 						<ActionBar>
 							<li>
-								<Link to="/profile">Profile</Link>
+								<Button buttonText="Profile" onClick={() => console.log('test')} type="button" />
 							</li>
 							<li>
-								<Link to="/match">Matches</Link>
+								<Button buttonText="Matches" onClick={() => console.log('test')} type="button" />
 							</li>
 							<li>
-								<Link to="/message">Message</Link>
+								<Button buttonText="Message" onClick={() => console.log('test')} type="button" />
 							</li>
 
 							<li>
-								<Link to="/logout">logout</Link>
+								<Button buttonText="logout" onClick={() => console.log('test')} type="button" />
 							</li>
 						</ActionBar>
 
@@ -81,16 +81,15 @@ export const Dashboard = () => {
 					</RightAside>
 
 					<MainSection>
-						{/* <Animated animationIn="bounceOutLeft" animationInDelay="0" animationOut="fadeOut" isVisible={true}> */}
-						<JobDetails
+						{/* <JobDetails
 							imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
 							companyName="Google"
 							location="Lagos Nigeria"
 							companySize="10000"
 							linkedIn="linkedin/google"
 							website="https://www.google.com/"
-						/>
-						{/* </Animated> */}
+						/> */}
+						<SeekerContainer />
 					</MainSection>
 				</MainWrapper>
 			</main>
@@ -148,7 +147,7 @@ const ActionBar = styled.ul`
 	justify-content: space-between;
 	margin: ${small_space} 0;
 
-	li {
+	li button {
 		margin-bottom: ${small_space};
 		width: 100px;
 		background: #283e4a;

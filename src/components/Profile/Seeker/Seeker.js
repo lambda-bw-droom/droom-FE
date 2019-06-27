@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 import { Button, Input } from '../../~common';
 import { borderRadius, medium_space, h4_font_size } from '../../~styles/reuseables';
 /**
@@ -9,7 +10,7 @@ import { borderRadius, medium_space, h4_font_size } from '../../~styles/reuseabl
  * @returns {object}
  */
 export const Seeker = props => {
-	const { handleSubmit, inputChange, form } = props;
+	const { handleSubmit, inputChange, form, creatingProfile } = props;
 
 	return (
 		<MainWrapper>
@@ -19,19 +20,19 @@ export const Seeker = props => {
 				<form>
 					<Input
 						type="text"
-						name="firstName"
+						name="first_name"
 						inputChange={inputChange}
-						error={form.errors.firstName}
-						value={form.firstName}
+						error={form.errors.first_name}
+						value={form.first_name}
 						labelText="First name"
 					/>
 
 					<Input
 						type="text"
-						name="lastName"
+						name="last_name"
 						inputChange={inputChange}
-						error={form.errors.lastName}
-						value={form.lastName}
+						error={form.errors.last_name}
+						value={form.last_name}
 						labelText="Last name"
 					/>
 
@@ -71,8 +72,14 @@ export const Seeker = props => {
 						labelText="linkedIn"
 					/>
 					<ActionWrapper>
-						<Button buttonText="Create" onClick={handleSubmit} type="button" />
-						<Button buttonText="Cancel" onClick={handleSubmit} type="button" />
+						<Button
+							buttonText={
+								(creatingProfile && <Loader type="ThreeDots" color="#f4f4f4" height={50} width={50} />) || 'Create'
+							}
+							onClick={handleSubmit}
+							type="button"
+						/>
+						{creatingProfile ? '' : <Button buttonText="Cancel" onClick={handleSubmit} type="button" />}
 					</ActionWrapper>
 				</form>
 			</FormContainer>
