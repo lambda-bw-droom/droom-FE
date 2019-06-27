@@ -15,7 +15,7 @@ export const ButtonStyled = styled.button`
 	width: 100%;
 	line-height: 48px;
 	padding: 0 ${normal_space};
-	font-weight: 600;
+	font-weight: 300;
 	color: ${white};
 	background: ${primary_color};
 	border: none;

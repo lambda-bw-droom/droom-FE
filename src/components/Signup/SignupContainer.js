@@ -13,6 +13,8 @@ import { Signup } from './Signup';
  * @returns {Object}
  */
 const SignupContainer = props => {
+	const { creating } = props;
+
 	const [form, setValue] = useState({
 		first_name: '',
 		last_name: '',
@@ -30,7 +32,14 @@ const SignupContainer = props => {
 			password: form.password,
 			is_employer: form.is_employer
 		};
-		createAccount(newUser);
+
+		createAccount(newUser).then(res => {
+			if (res.data !== undefined && res.status === 201) {
+				return props.history.push('/dashboard');
+			}
+
+			props.history.push('/signup');
+		});
 	};
 
 	const inputChange = (field, value) => {
@@ -42,7 +51,13 @@ const SignupContainer = props => {
 
 	const { createAccount } = props;
 
-	return <Signup form={form} inputChange={inputChange} handleSubmit={handleSubmit} />;
+	return <Signup form={form} inputChange={inputChange} creating={creating} handleSubmit={handleSubmit} />;
 };
 
-export default connect(null, { createAccount })(SignupContainer);
+const mapStateToProps = state => {
+	return {
+		creating: state.userReducer.creating
+	};
+};
+
+export default connect(mapStateToProps, { createAccount })(SignupContainer);

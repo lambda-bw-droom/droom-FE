@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Input } from '../../~common';
-import { borderRadius, medium_space } from '../../~styles/reuseables';
+import { borderRadius, medium_space, h4_font_size } from '../../~styles/reuseables';
 /**
  * This is a dumb component with no logic
  *
@@ -14,7 +14,7 @@ export const Seeker = props => {
 	return (
 		<MainWrapper>
 			<FormContainer>
-				<h3>Setup Your Profile</h3>
+				<h4>Setup Your Profile</h4>
 
 				<form>
 					<Input
@@ -70,8 +70,10 @@ export const Seeker = props => {
 						value={form.linkedIn}
 						labelText="linkedIn"
 					/>
-
-					<Button buttonText="Create" onClick={handleSubmit} type="button" />
+					<ActionWrapper>
+						<Button buttonText="Create" onClick={handleSubmit} type="button" />
+						<Button buttonText="Cancel" onClick={handleSubmit} type="button" />
+					</ActionWrapper>
 				</form>
 			</FormContainer>
 		</MainWrapper>
@@ -80,7 +82,6 @@ export const Seeker = props => {
 
 const MainWrapper = styled.section`
 	display: flex;
-	padding: 10rem 0;
 	justify-content: space-around;
 	align-items: center;
 	min-height: calc(100vh - 100px);
@@ -92,8 +93,21 @@ const FormContainer = styled.div`
 	border-radius: ${borderRadius};
 	padding: 4rem;
 
-	h3 {
+	h4 {
+		margin: 0;
 		margin-bottom: ${medium_space};
+		font-size: ${h4_font_size};
 		text-align: center;
+	}
+`;
+
+const ActionWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+
+	button {
+		width: 150px;
+		margin-top: 15px;
+		font-weight: 400;
 	}
 `;

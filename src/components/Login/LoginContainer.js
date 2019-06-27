@@ -13,6 +13,8 @@ import { Login } from './Login';
  * @returns {Object}
  */
 const LoginContainer = props => {
+	const { signing_in } = props;
+
 	const [form, setValue] = useState({
 		username: '',
 		password: '',
@@ -36,7 +38,13 @@ const LoginContainer = props => {
 
 	const { login } = props;
 
-	return <Login form={form} inputChange={inputChange} handleSubmit={handleSubmit} />;
+	return <Login form={form} inputChange={inputChange} signing_in={signing_in} handleSubmit={handleSubmit} />;
 };
 
-export default connect(null, { login })(LoginContainer);
+const mapStateToProps = state => {
+	return {
+		signing_in: state.userReducer.signing_in
+	};
+};
+
+export default connect(mapStateToProps, { login })(LoginContainer);

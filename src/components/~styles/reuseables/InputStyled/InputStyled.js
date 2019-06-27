@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { normal_space, base_font_size, primary_color, boxShadow, borderRadius, dark, light } from '../index';
+import { normal_space, primary_color, boxShadow, borderRadius, dark, small_font_size } from '../index';
 
 export const InputStyled = styled.input`
 	width: 100%;
@@ -8,8 +8,8 @@ export const InputStyled = styled.input`
 	display: block;
 	padding: ${normal_space};
 	border-radius: ${borderRadius};
-	font-size: ${base_font_size};
-	font-weight: 600;
+	font-size: ${small_font_size};
+	font-weight: 400;
 	border: 1px solid ${dark};
 	background-color: unset;
 	outline: none;
@@ -17,7 +17,7 @@ export const InputStyled = styled.input`
 	color: ${dark};
 
 	&::placeholder {
-		color: ${light};
+		color: ${dark};
 	}
 
 	&:focus,

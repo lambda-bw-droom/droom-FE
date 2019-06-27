@@ -10,7 +10,8 @@ import {
 	medium_space,
 	borderRadius,
 	primary_color,
-	ButtonSecondaryStyled
+	ButtonSecondaryStyled,
+	h4_font_size
 } from '../~styles/reuseables';
 
 /**
@@ -24,13 +25,13 @@ export const JobDetails = props => {
 
 	return (
 		<JobDetailsStyled>
-			<h4>Job details</h4>
+			<h4>Software Engineer</h4>
 			<CompanyDetailsWrapper>
 				<div>
 					<img src={imgSrc} alt={companyName} />
 				</div>
 				<ul>
-					<li>Company Name {companyName}</li>
+					<li>Company Name: {companyName}</li>
 					<li>Location: {location}</li>
 					<li>Company Size: {companySize}</li>
 					<li>
@@ -59,7 +60,7 @@ JobDetails.propTypes = {
 	imgSrc: PropTypes.string.isRequired,
 	companyName: PropTypes.string.isRequired,
 	location: PropTypes.string.isRequired,
-	companySize: PropTypes.number.isRequired,
+	companySize: PropTypes.string.isRequired,
 	linkedIn: PropTypes.string.isRequired,
 	website: PropTypes.string.isRequired
 };
@@ -75,10 +76,11 @@ const JobDetailsStyled = styled.div`
 	box-shadow: ${boxShadow};
 	padding-top: ${medium_space};
 	border-radius: ${borderRadius};
-	padding: ${small_space};
+	padding: ${medium_space};
 
 	a {
 		color: ${dark};
+		margin: 0;
 
 		&:hover {
 			color: ${primary_color};
@@ -86,7 +88,13 @@ const JobDetailsStyled = styled.div`
 	}
 
 	h4 {
-		margin: ${small_space} 0;
+		margin: 0;
+		margin-bottom: ${medium_space};
+		font-size: ${h4_font_size};
+		text-align: center;
+		padding-bottom: 5px;
+		font-weight: normal;
+		border-bottom: 1px solid #ccc;
 	}
 `;
 

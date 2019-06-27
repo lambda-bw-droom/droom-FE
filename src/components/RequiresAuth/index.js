@@ -5,7 +5,7 @@ import { Route, Redirect } from 'react-router-dom';
  * @param {object} { component: Component }
  * @returns {object}
  */
-export const Auth = ({ component: Component }) => {
+export const RequiresAuth = ({ component: Component }) => {
 	const token = localStorage.getItem('token');
 
 	// Check if token exist and renders wrapped component
@@ -13,5 +13,5 @@ export const Auth = ({ component: Component }) => {
 		return <Route render={props => <Component {...props} />} />;
 	}
 
-	return <Redirect to="/" />;
+	return <Redirect to="/login" />;
 };

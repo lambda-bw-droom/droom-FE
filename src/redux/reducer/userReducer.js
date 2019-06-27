@@ -3,84 +3,12 @@ import {
 	CREATE_ACCOUNT_SUCCESS,
 	CREATE_ACCOUNT_FAILURE,
 	LOGIN_IN,
-	LOGIN_IN_SUCCESS,
-	LOGIN_IN_FAILURE
+	LOG_IN_SUCCESS,
+	LOG_IN_FAILURE
 } from '../action';
 
 const initialState = {
-	user: {
-		username: '',
-		user_type: 0
-	},
-	profile: {
-		employers: [
-			{
-				name: '',
-				location: '',
-				about: '',
-				contact_info: {
-					phone: '',
-					email: ''
-				},
-				social_media: {
-					facebook: '',
-					linkedIn: '',
-					twitter: '',
-					github: ''
-				},
-				website: ''
-			}
-		],
-		seekers: [
-			{
-				first_name: '',
-				last_name: '',
-				position: '',
-				location: '',
-				bio: '',
-				job_type: '',
-				contact_info: {
-					phone_number: '',
-					email: ''
-				},
-				interests: [],
-				past_experience: [
-					{
-						name: '',
-						title: '',
-						description: ''
-					}
-				],
-				education: [
-					{
-						school: '',
-						certificate: ''
-					}
-				],
-				skills: [],
-				references: [
-					{
-						name: '',
-						relationship: '',
-						phone: '',
-						email: ''
-					}
-				],
-				social_media: {
-					facebook: '',
-					linkedIn: '',
-					twitter: '',
-					github: ''
-				},
-				portfolio: '',
-				resume: '',
-				projects: [],
-				niche: 1,
-				seen: [],
-				timestamp: ''
-			}
-		]
-	},
+	user: null,
 	creating: false,
 	signing_in: false,
 	error: null
@@ -97,28 +25,30 @@ export const userReducer = (state = initialState, action) => {
 			return {
 				...state,
 				creating: false,
-				user: action.payload.user,
-				...action.payload.profile
+				user: action.payload.user
 			};
 		case CREATE_ACCOUNT_FAILURE:
 			return {
 				...state,
-				error: action.payload
+				error: action.payload,
+				creating: false
 			};
 		case LOGIN_IN:
 			return {
 				...state,
 				signing_in: true
 			};
-		case LOGIN_IN_SUCCESS:
+		case LOG_IN_SUCCESS:
 			return {
 				...state,
+				signing_in: false,
 				user: action.payload.user,
 				...action.payload.profile
 			};
-		case LOGIN_IN_FAILURE:
+		case LOG_IN_FAILURE:
 			return {
 				...state,
+				signing_in: false,
 				error: action.payload
 			};
 		default:

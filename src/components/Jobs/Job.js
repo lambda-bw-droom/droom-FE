@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Animated } from 'react-animated-css';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {
@@ -23,13 +24,15 @@ export const Job = props => {
 
 	return (
 		<JobCard to="/jobs">
-			<div>
-				<img src={imgSrc} alt={companyName} />
-			</div>
-			<JobRoleStyled>{role}</JobRoleStyled>
-			<CompanyNameStyled>{companyName}</CompanyNameStyled>
-			<CompanyLocationStyled>{location}</CompanyLocationStyled>
-			<PostedDateStyled>{postedDate}</PostedDateStyled>
+			<Animated animationIn="zoomInDown" isVisible={true}>
+				<div>
+					<img src={imgSrc} alt={companyName} />
+				</div>
+				<JobRoleStyled>{role}</JobRoleStyled>
+				<CompanyNameStyled>{companyName}</CompanyNameStyled>
+				<CompanyLocationStyled>{location}</CompanyLocationStyled>
+				<PostedDateStyled>{postedDate}</PostedDateStyled>
+			</Animated>
 		</JobCard>
 	);
 };

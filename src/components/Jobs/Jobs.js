@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { Animated } from 'react-animated-css';
 import { Header, Footer } from '../~common';
 import { white, medium_space, ContainerStyled } from '../~styles/reuseables';
 import { Job } from './Job';
@@ -8,6 +9,7 @@ import { JobDetails } from './JobDetails';
 
 const jobs = [
 	{
+		id: 1,
 		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
 		role: 'Executive Assistant to CEO',
 		companyName: 'Lambda',
@@ -15,6 +17,7 @@ const jobs = [
 		postedDate: '1 day ago'
 	},
 	{
+		id: 2,
 		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
 		role: 'Executive Assistant to CEO',
 		companyName: 'Lambda',
@@ -22,6 +25,7 @@ const jobs = [
 		postedDate: '1 day ago'
 	},
 	{
+		id: 3,
 		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
 		role: 'Executive Assistant to CEO',
 		companyName: 'Lambda',
@@ -29,6 +33,7 @@ const jobs = [
 		postedDate: '1 day ago'
 	},
 	{
+		id: 4,
 		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
 		role: 'Executive Assistant to CEO',
 		companyName: 'Lambda',
@@ -36,6 +41,7 @@ const jobs = [
 		postedDate: '1 day ago'
 	},
 	{
+		id: 5,
 		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
 		role: 'Executive Assistant to CEO',
 		companyName: 'Lambda',
@@ -43,6 +49,7 @@ const jobs = [
 		postedDate: '1 day ago'
 	},
 	{
+		id: 6,
 		imgSrc: 'https://img.icons8.com/color/48/000000/user-male-circle.png',
 		role: 'Executive Assistant to CEO',
 		companyName: 'Lambda',
@@ -80,17 +87,18 @@ export const Jobs = () => {
 				<ContainerStyled>
 					<h3>Explore Jobs</h3>
 					<MainWrapper>
-						<JobListContainer>{jobs.map(job => <Job {...job} />)}</JobListContainer>
-
+						<JobListContainer>{jobs.map(job => <Job key={job.id} {...job} />)}</JobListContainer>
 						<RightAside>
-							<JobDetails
-								imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
-								companyName="Google"
-								location="Lagos Nigeria"
-								companySize="10000"
-								linkedIn="linkedin/google"
-								website="https://www.google.com/"
-							/>
+							<Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
+								<JobDetails
+									imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
+									companyName="Google"
+									location="Lagos Nigeria"
+									companySize="10000"
+									linkedIn="linkedin/google"
+									website="https://www.google.com/"
+								/>
+							</Animated>
 						</RightAside>
 					</MainWrapper>
 				</ContainerStyled>

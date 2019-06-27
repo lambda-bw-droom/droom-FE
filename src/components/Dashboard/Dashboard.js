@@ -1,4 +1,5 @@
 import React from 'react';
+import { Animated } from 'react-animated-css';
 import styled from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
 import { Header } from '../~common';
@@ -80,7 +81,7 @@ export const Dashboard = () => {
 					</RightAside>
 
 					<MainSection>
-						<h3>Click to button to swap</h3>
+						{/* <Animated animationIn="bounceOutLeft" animationInDelay="0" animationOut="fadeOut" isVisible={true}> */}
 						<JobDetails
 							imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
 							companyName="Google"
@@ -89,6 +90,7 @@ export const Dashboard = () => {
 							linkedIn="linkedin/google"
 							website="https://www.google.com/"
 						/>
+						{/* </Animated> */}
 					</MainSection>
 				</MainWrapper>
 			</main>
@@ -169,12 +171,7 @@ const MainSection = styled.section`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
-	h3 {
-		text-align: center;
-		margin: 0;
-		margin: ${medium_space} 0;
-	}
+	padding-bottom: 50px;
 `;
 
 const ProfileImageContainer = styled.div`

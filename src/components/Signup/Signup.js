@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 import { NavLink } from 'react-router-dom';
+import { Animated } from 'react-animated-css';
 import { Header, Footer, Button, Input } from '../~common';
 import {
 	ContainerStyled,
@@ -18,7 +20,7 @@ import {
  * @returns {object}
  */
 export const Signup = props => {
-	const { handleSubmit, inputChange, form } = props;
+	const { handleSubmit, inputChange, form, creating } = props;
 
 	return (
 		<div>
@@ -42,83 +44,91 @@ export const Signup = props => {
 				<ContainerStyled>
 					<MainWrapper>
 						<div>welcome message</div>
+						<Animated animationIn="slideInDown" animationOut="fadeOut" isVisible={true}>
+							<FormContainer>
+								<h3>Create Account</h3>
 
-						<FormContainer>
-							<h3>Create Account</h3>
+								<form>
+									<Input
+										type="text"
+										name="first_name"
+										inputChange={inputChange}
+										error={form.errors.first_name}
+										value={form.first_name}
+										labelText="First name"
+									/>
 
-							<form>
-								<Input
-									type="text"
-									name="first_name"
-									inputChange={inputChange}
-									error={form.errors.first_name}
-									value={form.first_name}
-									labelText="First name"
-								/>
+									<Input
+										type="text"
+										name="last_name"
+										inputChange={inputChange}
+										error={form.errors.last_name}
+										value={form.last_name}
+										labelText="Last name"
+									/>
 
-								<Input
-									type="text"
-									name="last_name"
-									inputChange={inputChange}
-									error={form.errors.last_name}
-									value={form.last_name}
-									labelText="Last name"
-								/>
+									<Input
+										type="text"
+										name="email"
+										inputChange={inputChange}
+										error={form.errors.email}
+										value={form.email}
+										labelText="Email"
+									/>
 
-								<Input
-									type="text"
-									name="email"
-									inputChange={inputChange}
-									error={form.errors.email}
-									value={form.email}
-									labelText="Email"
-								/>
+									<Input
+										type="password"
+										name="password"
+										inputChange={inputChange}
+										error={form.errors.password}
+										value={form.password}
+										labelText="Password"
+									/>
 
-								<Input
-									type="password"
-									name="password"
-									inputChange={inputChange}
-									error={form.errors.password}
-									value={form.password}
-									labelText="Password"
-								/>
+									<InputGroupStyled style={{ display: 'flex', margin: '20px 0' }}>
+										<LabelStyled>
+											Job seeker{' '}
+											<input
+												type="radio"
+												name="is_employer"
+												value={false}
+												style={{ marginRight: '20px' }}
+												checked={`${form.is_employer}` === `${false}`}
+												onChange={evt => {
+													const field = evt.target.name;
+													const value = evt.target.value;
+													inputChange(field, value);
+												}}
+											/>
+										</LabelStyled>
 
-								<InputGroupStyled style={{ display: 'flex' }}>
-									<LabelStyled>
-										Job seeker{' '}
-										<input
-											type="radio"
-											name="is_employer"
-											value={false}
-											style={{ marginRight: '20px' }}
-											checked={`${form.is_employer}` === `${false}`}
-											onChange={evt => {
-												const field = evt.target.name;
-												const value = evt.target.value;
-												inputChange(field, value);
-											}}
-										/>
-									</LabelStyled>
+										<LabelStyled>
+											Employer{' '}
+											<input
+												type="radio"
+												name="is_employer"
+												value={true}
+												checked={`${form.is_employer}` === `${true}`}
+												onChange={evt => {
+													const field = evt.target.name;
+													const value = evt.target.value;
+													inputChange(field, value);
+												}}
+											/>
+										</LabelStyled>
+									</InputGroupStyled>
 
-									<LabelStyled>
-										Employer{' '}
-										<input
-											type="radio"
-											name="is_employer"
-											value={true}
-											checked={`${form.is_employer}` === `${true}`}
-											onChange={evt => {
-												const field = evt.target.name;
-												const value = evt.target.value;
-												inputChange(field, value);
-											}}
-										/>
-									</LabelStyled>
-								</InputGroupStyled>
-
-								<Button buttonText="Create Account" onClick={handleSubmit} type="button" />
-							</form>
-						</FormContainer>
+									<Button
+										buttonText={
+											(creating && <Loader type="ThreeDots" color="#f4f4f4" height={50} width={50} />) ||
+											'Create Account'
+										}
+										onClick={handleSubmit}
+										type="button"
+									/>
+								</form>
+							</FormContainer>
+						</Animated>
 					</MainWrapper>
 				</ContainerStyled>
 			</main>
