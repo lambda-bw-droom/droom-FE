@@ -16,7 +16,7 @@ const LoginContainer = props => {
 	const { signing_in } = props;
 
 	const [form, setValue] = useState({
-		username: '',
+		email: '',
 		password: '',
 		errors: {}
 	});
@@ -30,10 +30,18 @@ const LoginContainer = props => {
 
 	const handleSubmit = () => {
 		const newUser = {
-			username: form.username,
+			email: form.email,
 			password: form.password
 		};
-		login(newUser);
+
+		login(newUser).then(res => {
+			console.log(res);
+			if (res.data !== undefined && res.status === 200) {
+				return props.history.push('/dashboard');
+			}
+
+			props.history.push('/login');
+		});
 	};
 
 	const { login } = props;

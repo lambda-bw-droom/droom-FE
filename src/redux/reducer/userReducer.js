@@ -42,8 +42,10 @@ export const userReducer = (state = initialState, action) => {
 			return {
 				...state,
 				signing_in: false,
-				user: action.payload.user,
-				...action.payload.profile
+				user: {
+					...state.user,
+					is_employer: action.payload.userType
+				}
 			};
 		case LOG_IN_FAILURE:
 			return {

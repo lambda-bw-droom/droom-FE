@@ -53,7 +53,7 @@ export const login = credentials => dispatch => {
 			dispatch({
 				type: LOG_IN_SUCCESS,
 				payload: {
-					user: res.data.saved[0],
+					userType: res.data.userType,
 					token: res.data.token
 				}
 			});

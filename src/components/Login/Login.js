@@ -44,11 +44,11 @@ export const Login = props => {
 								<form>
 									<Input
 										type="text"
-										name="username"
+										name="email"
 										inputChange={inputChange}
-										error={form.errors.username}
-										value={form.username}
-										labelText="Username"
+										error={form.errors.email}
+										value={form.email}
+										labelText="Email"
 									/>
 
 									<Input
