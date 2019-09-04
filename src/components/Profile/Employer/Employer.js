@@ -1,7 +1,8 @@
 import React from 'react';
+import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 import { Button, Input } from '../../~common';
-import { borderRadius, medium_space } from '../../~styles/reuseables';
+import { borderRadius, medium_space, h4_font_size } from '../../~styles/reuseables';
 /**
  * This is a dumb component with no logic
  *
@@ -9,7 +10,7 @@ import { borderRadius, medium_space } from '../../~styles/reuseables';
  * @returns {object}
  */
 export const Employer = props => {
-	const { handleSubmit, inputChange, form } = props;
+	const { handleSubmit, inputChange, form, creatingProfile } = props;
 
 	return (
 		<MainWrapper>
@@ -80,7 +81,16 @@ export const Employer = props => {
 						labelText="Website Address"
 					/>
 
-					<Button buttonText="Create" onClick={handleSubmit} type="button" />
+					<ActionWrapper>
+						<Button
+							buttonText={
+								(creatingProfile && <Loader type="ThreeDots" color="#f4f4f4" height={50} width={50} />) || 'Create'
+							}
+							onClick={handleSubmit}
+							type="button"
+						/>
+						<Button buttonText="Cancel" onClick={handleSubmit} type="button" />
+					</ActionWrapper>
 				</form>
 			</FormContainer>
 		</MainWrapper>
@@ -89,7 +99,6 @@ export const Employer = props => {
 
 const MainWrapper = styled.section`
 	display: flex;
-	padding: 10rem 0;
 	justify-content: space-around;
 	align-items: center;
 	min-height: calc(100vh - 100px);
@@ -101,8 +110,21 @@ const FormContainer = styled.div`
 	border-radius: ${borderRadius};
 	padding: 4rem;
 
-	h3 {
+	h4 {
+		margin: 0;
 		margin-bottom: ${medium_space};
+		font-size: ${h4_font_size};
 		text-align: center;
+	}
+`;
+
+const ActionWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+
+	button {
+		width: 150px;
+		margin-top: 15px;
+		font-weight: 400;
 	}
 `;

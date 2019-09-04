@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 import { NavLink } from 'react-router-dom';
+import { Animated } from 'react-animated-css';
 import { Header, Footer, Button, Input } from '../~common';
-import { ContainerStyled, borderRadius, medium_space } from '../~styles/reuseables';
+import { ContainerStyled, borderRadius, medium_space, white, boxShadow } from '../~styles/reuseables';
 /**
  * This is a dumb component with no logic
  *
@@ -10,7 +12,7 @@ import { ContainerStyled, borderRadius, medium_space } from '../~styles/reuseabl
  * @returns {object}
  */
 export const Login = props => {
-	const { handleSubmit, inputChange, form } = props;
+	const { handleSubmit, inputChange, form, signing_in } = props;
 
 	return (
 		<div>
@@ -35,31 +37,38 @@ export const Login = props => {
 					<MainWrapper>
 						<div>welcome message</div>
 
-						<FormContainer>
-							<h3>Welcome Back!</h3>
+						<Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
+							<FormContainer>
+								<h3>Welcome Back!</h3>
 
-							<form>
-								<Input
-									type="text"
-									name="username"
-									inputChange={inputChange}
-									error={form.errors.username}
-									value={form.username}
-									labelText="Username"
-								/>
+								<form>
+									<Input
+										type="text"
+										name="email"
+										inputChange={inputChange}
+										error={form.errors.email}
+										value={form.email}
+										labelText="Email"
+									/>
 
-								<Input
-									type="password"
-									name="password"
-									inputChange={inputChange}
-									error={form.errors.password}
-									value={form.password}
-									labelText="Password"
-								/>
-
-								<Button buttonText="login" onClick={handleSubmit} type="button" />
-							</form>
-						</FormContainer>
+									<Input
+										type="password"
+										name="password"
+										inputChange={inputChange}
+										error={form.errors.password}
+										value={form.password}
+										labelText="Password"
+									/>
+									<Button
+										buttonText={
+											(signing_in && <Loader type="ThreeDots" color="#f4f4f4" height={50} width={50} />) || 'login'
+										}
+										onClick={handleSubmit}
+										type="button"
+									/>
+								</form>
+							</FormContainer>
+						</Animated>
 					</MainWrapper>
 				</ContainerStyled>
 			</main>
@@ -82,9 +91,10 @@ const MainWrapper = styled.section`
 
 const FormContainer = styled.div`
 	width: 400px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	box-shadow: ${boxShadow};
 	border-radius: ${borderRadius};
 	padding: 4rem;
+	background: ${white};
 
 	h3 {
 		margin-bottom: ${medium_space};

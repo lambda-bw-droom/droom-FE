@@ -6,7 +6,9 @@ import { GlobalStyles } from '../~styles/reuseables';
 import { Login } from '../Login';
 import { Signup } from '../Signup';
 import { Home } from '../Home';
+import { JobsContainer } from '../Jobs';
 import { Dashboard } from '../Dashboard/Dashboard';
+import { RequiresAuth } from '../RequiresAuth';
 import uuid from 'uuid';
 
 export const App = () => {
@@ -17,7 +19,13 @@ export const App = () => {
 				<Route exact path="/" render={props => <Home {...props} />} key={uuid()} />
 				<Route exact path="/login" render={props => <Login {...props} />} key={uuid()} />
 				<Route exact path="/signup" render={props => <Signup {...props} />} key={uuid()} />
-				<Route exact path="/dash" render={props => <Dashboard {...props} />} key={uuid()} />
+				<Route
+					exact
+					path="/dashboard"
+					render={props => <RequiresAuth {...props} component={Dashboard} />}
+					key={uuid()}
+				/>
+				<Route exact path="/jobs" render={props => <JobsContainer {...props} />} key={uuid()} />
 			</Provider>
 		</Router>
 	);

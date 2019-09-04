@@ -7,12 +7,14 @@ import {
 	h4_font_size,
 	small_space,
 	white,
-	secondary_color
+	secondary_color,
+	lightGrey
 } from '../index';
 import { dark } from '../variables/colors';
 
 export const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
 
 :root {
   font-size: 62.5%;
@@ -63,6 +65,7 @@ body {
   font-family: 'Roboto', 'Roboto Slab', serif;
   line-height: 1.2;
   color: ${dark};
+  background: ${lightGrey};
 }
 
 h1 {

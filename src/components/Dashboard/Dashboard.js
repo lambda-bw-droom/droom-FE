@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink, Link } from 'react-router-dom';
-import { Header } from '../~common';
+import { NavLink } from 'react-router-dom';
+import { Header, Button } from '../~common';
 import {
 	small_space,
 	dark,
@@ -10,9 +10,12 @@ import {
 	boxShadow,
 	medium_space,
 	light,
-	borderRadius,
-	primary_color
+	borderRadius
 } from '../~styles/reuseables';
+
+import { JobDetails } from '../Jobs/JobDetails';
+import { SeekerContainer, EmployerContainer } from '../Profile';
+
 /**
  * This is a dumb component with no logic
  *
@@ -43,39 +46,51 @@ export const Dashboard = () => {
 			</Header>
 			<main>
 				<MainWrapper>
-					<LeftAside>
-						<div>
-							<div>matches</div>
-							<div>matches details</div>
-						</div>
-					</LeftAside>
+					<RightAside>
+						<ProfileImageContainer>
+							<ProfileImage>
+								<img src="https://img.icons8.com/color/48/000000/user-male-circle.png" alt="user thumbnail" />
+							</ProfileImage>
+
+							<div>My matches</div>
+						</ProfileImageContainer>
+
+						<ActionBar>
+							<li>
+								<Button buttonText="Profile" onClick={() => console.log('test')} type="button" />
+							</li>
+							<li>
+								<Button buttonText="Matches" onClick={() => console.log('test')} type="button" />
+							</li>
+							<li>
+								<Button buttonText="Message" onClick={() => console.log('test')} type="button" />
+							</li>
+
+							<li>
+								<Button buttonText="logout" onClick={() => console.log('test')} type="button" />
+							</li>
+						</ActionBar>
+
+						<MatchList>
+							<h5>Your Matches</h5>
+							<li>Google</li>
+							<li>Facebook</li>
+							<li>Andela</li>
+							<li>Lambda</li>
+						</MatchList>
+					</RightAside>
 
 					<MainSection>
-						<h3>Explore Jobs</h3>
-						<JobListContainer>
-							<JobCard>Job1</JobCard>
-							<JobCard>Job2</JobCard>
-							<JobCard>Job3</JobCard>
-						</JobListContainer>
+						{/* <JobDetails
+							imgSrc="https://img.icons8.com/color/48/000000/google-logo.png"
+							companyName="Google"
+							location="Lagos Nigeria"
+							companySize="10000"
+							linkedIn="linkedin/google"
+							website="https://www.google.com/"
+						/> */}
+						<SeekerContainer />
 					</MainSection>
-
-					<RightAside>
-						<ul>
-							<li>
-								<Link to="/profile">Profile</Link>
-							</li>
-							<li>
-								<Link to="/match">Matches</Link>
-							</li>
-							<li>
-								<Link to="/message">Message</Link>
-							</li>
-
-							<li>
-								<Link to="/logout">logout</Link>
-							</li>
-						</ul>
-					</RightAside>
 				</MainWrapper>
 			</main>
 		</DashboardStyled>
@@ -85,14 +100,6 @@ export const Dashboard = () => {
 const MainWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
-
-	aside {
-		background: ${lightGrey};
-		min-height: calc(100vh - 50px);
-		width: 250px;
-		box-shadow: ${boxShadow};
-		padding: ${medium_space};
-	}
 `;
 
 const DashboardStyled = styled.div`
@@ -106,63 +113,102 @@ const DashboardStyled = styled.div`
 `;
 
 const RightAside = styled.aside`
+	margin-top: 1px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background: ${lightGrey};
+	min-height: calc(100vh - 50px);
+	width: 300px;
+	box-shadow: ${boxShadow};
+	padding: ${medium_space};
 
 	a {
-		color: ${dark};
+		color: ${white};
+		display: block;
+		padding: 5px;
 
 		&:hover {
-			color: ${primary_color};
-		}
-	}
-
-	ul {
-		list-style: none;
-		background: ${light};
-		padding: ${medium_space};
-		border-radius: ${borderRadius};
-		border: 1px solid ${dark};
-
-		li {
-			margin-bottom: ${small_space};
+			color: #283e4a;
 		}
 	}
 `;
 
-const LeftAside = styled.aside`
+const ActionBar = styled.ul`
+	min-height: 100px;
+	list-style: none;
+	background: ${light};
+	width: 250px;
+	padding: ${small_space};
+	border-radius: ${borderRadius};
+	border: 1px solid ${dark};
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: ${small_space} 0;
 
-	a {
-		color: ${dark};
+	li button {
+		margin-bottom: ${small_space};
+		width: 100px;
+		background: #283e4a;
+		border-radius: ${borderRadius};
+		padding: 0;
+		transition: 0.2s;
+		border: 1px solid transparent;
 
 		&:hover {
-			color: ${primary_color};
+			border: 1px solid #283e4a;
+			background: ${white};
+			color: #283e4a;
 		}
 	}
 `;
 
 const MainSection = styled.section`
-	width: 900px;
-
-	h3 {
-		text-align: center;
-		margin: ${medium_space};
-	}
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 50px;
 `;
 
-const JobListContainer = styled.div`
+const ProfileImageContainer = styled.div`
+	min-height: 100px;
+	padding: ${small_space};
+	background: ${light};
+	width: 250px;
+	border: 1px solid ${dark};
+	border-radius: ${borderRadius};
 	display: flex;
-	flex-wrap: wrap;
+	align-items: center;
 	justify-content: space-between;
 `;
 
-const JobCard = styled.div`
-	width: 260px;
-	height: 260px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-	padding: ${small_space};
+const ProfileImage = styled.div`
+	img {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+	}
+`;
+
+const MatchList = styled.ul`
+	min-height: 100px;
+	list-style: none;
+	color: #283e4a;
+	width: 250px;
+	border-radius: ${borderRadius};
+	border: 1px solid ${dark};
+	margin-bottom: ${small_space} 0;
+
+	li {
+		padding: ${small_space};
+	}
+
+	h5 {
+		text-align: center;
+		padding: ${small_space} 0;
+		border-bottom: 1px solid #283e4a;
+	}
 `;

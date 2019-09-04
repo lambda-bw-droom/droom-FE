@@ -13,8 +13,10 @@ import { Login } from './Login';
  * @returns {Object}
  */
 const LoginContainer = props => {
+	const { signing_in } = props;
+
 	const [form, setValue] = useState({
-		username: '',
+		email: '',
 		password: '',
 		errors: {}
 	});
@@ -28,15 +30,28 @@ const LoginContainer = props => {
 
 	const handleSubmit = () => {
 		const newUser = {
-			username: form.username,
+			email: form.email,
 			password: form.password
 		};
-		login(newUser);
+
+		login(newUser).then(res => {
+			if (res.data !== undefined && res.status === 200) {
+				return props.history.push('/dashboard');
+			}
+
+			props.history.push('/login');
+		});
 	};
 
 	const { login } = props;
 
-	return <Login form={form} inputChange={inputChange} handleSubmit={handleSubmit} />;
+	return <Login form={form} inputChange={inputChange} signing_in={signing_in} handleSubmit={handleSubmit} />;
 };
 
-export default connect(null, { login })(LoginContainer);
+const mapStateToProps = state => {
+	return {
+		signing_in: state.userReducer.signing_in
+	};
+};
+
+export default connect(mapStateToProps, { login })(LoginContainer);

@@ -13,7 +13,7 @@ export const Button = props => {
 };
 
 Button.propTypes = {
-	buttonText: PropTypes.string.isRequired,
+	buttonText: PropTypes.any,
 	type: PropTypes.string,
 	onClick: PropTypes.func.isRequired
 };
